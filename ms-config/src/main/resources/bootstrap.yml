@@ -1,0 +1,23 @@
+server:
+  #端口号
+  port: 9991
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /config
+spring:
+  application:
+    name: ms-config
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: false #设置不需要注册到 consul 中
+
+      config:
+        enabled: true
+        format: yaml
+        prefix: myconfigdir
+        name: myconfig
+        data-key: mydata
+        # {prefix}/{name|application.name}[,{activate}]/{data-key}=myconfigdir/myconfig/mydata

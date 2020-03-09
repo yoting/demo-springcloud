@@ -1,0 +1,17 @@
+server:
+  #端口号
+  port: 8882
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /provider
+spring:
+  application:
+    name: provider-B
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: consul-service1 #注册在consul上面的名字，在consul的调用中，是通过此名字调用的
+        register-health-check: true #健康检查，保证服务处于启动状态，建议开启
+        health-check-path: /provider/actuator/health #因为项目设置了context-path，所以需要把项目的地址前缀加上，不然健康检查会404

@@ -1,0 +1,36 @@
+server:
+  #端口号
+  port: 8880
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /consumer
+spring:
+  application:
+    name: consumer-A
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: false #设置不需要注册到 consul 中
+
+#feign的配置，连接超时及读取超时配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+
+#ribbon负载均衡规则配置
+#consul-service1.ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

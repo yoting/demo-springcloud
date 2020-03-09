@@ -1,0 +1,36 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: false #设置不需要注册到 consul 中
+    gateway:
+      discovery:
+        locator:
+          enabled: true #表示通过注册中心获取服务
+#      filter:
+#        remove-non-proxy-headers:
+#          :
+#            - dummy
+      routes:
+        - id:  api1
+          uri: lb://consul-service1 #lb代表从注册中心获取服务，lb后面的是注册中心上的服务实例名称
+          predicates: #断言
+            - Path=/msapi/provider/** #如果路径以msapi/provider开头就算匹配上
+          filters: #过滤器
+            - StripPrefix=1 #此过滤器表示真实路径去掉第一层（/msapi）
+        - id:  api2
+          uri: http://localhost:8880
+          predicates:
+            - Path=/msapi/consumer/**
+          filters:
+            - StripPrefix=1
+            - name: TimeSpend
+              args:
+                prefix: LogTimeSpend

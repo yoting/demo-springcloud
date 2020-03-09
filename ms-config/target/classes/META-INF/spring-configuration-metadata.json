@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "book",
+      "type": "com.gusi.demo.config.BookCfg",
+      "sourceType": "com.gusi.demo.config.BookCfg"
+    }
+  ],
+  "properties": [
+    {
+      "name": "book.id",
+      "type": "java.lang.Integer",
+      "sourceType": "com.gusi.demo.config.BookCfg",
+      "defaultValue": 0
+    },
+    {
+      "name": "book.name",
+      "type": "java.lang.String",
+      "sourceType": "com.gusi.demo.config.BookCfg"
+    },
+    {
+      "name": "book.price",
+      "type": "java.lang.Double",
+      "sourceType": "com.gusi.demo.config.BookCfg"
+    }
+  ],
+  "hints": []
+}

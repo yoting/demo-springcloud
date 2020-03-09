@@ -1,2 +1,12 @@
-# demoSpringCloud
-微服务架构实践
+# demoSpringCloud-微服务架构实践
+- ms-privider：微服务的一个服务instance（提供服务）
+  - 使用Consul将服务A，B都注册到注册中心上
+- ms-consumer：微服务的一个服务instance（消费服务）
+  - 注册Consul服务注册中心，从consul上获取服务地址并且调运
+  - 调运服务使用了RestTemplate、Feign两种方式
+  - 调运服务使用了Ribbon进行负载均衡
+- ms-config：微服务配置中心
+  - 使用Consul作为配置中心，保存在远程ymal文件中，并在通过服务端获取配置并且注入到实体对象中
+- ms-gateway-api:微服务网关
+  - 提供统一服务入口，配置服务请求路由
+  - 提供了自定义过滤器，对统一请求进行过滤

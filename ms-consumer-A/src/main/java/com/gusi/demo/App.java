@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * Hello world!
  */
 public class App {
+
 	public static void testRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
 		BookDto book = restTemplate.getForObject("http://LAPTOP-2D57GMV4:8882/provider/book/get/{id}", BookDto.class, 1);
